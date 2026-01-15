@@ -87,12 +87,16 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.name = user.name;
+        token.image = user.image;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
+        session.user.name = token.name as string;
+        session.user.image = token.image as string;
       }
       return session;
     },
@@ -101,17 +105,22 @@ export const authOptions: NextAuthOptions = {
       if (account?.provider === "google") {
         try {
           await connectMongoDB();
-          const existingUser = await User.findOne({ email: user.email?.toLowerCase() });
+          let existingUser = await User.findOne({ email: user.email?.toLowerCase() });
 
           if (!existingUser) {
             // Create new user from Google account
-            await User.create({
+            existingUser = await User.create({
               name: user.name || "User",
               email: user.email?.toLowerCase() || "",
               password: "", // Google users don't have passwords
               image: user.image || "",
             });
           }
+
+          // Update user object with database data
+          user.id = existingUser._id.toString();
+          user.name = existingUser.name;
+          user.image = existingUser.image || user.image;
         } catch (error) {
           console.error("Google sign in error:", error);
         }
