@@ -75,13 +75,20 @@ export default async function Home() {
   return (
     <div className="bg-white dark:bg-gray-900">
       {/* 1. Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <section
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/hero.jpg')",
+        }}
+      >
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
               Learn From The Best Teachers Online
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+            <p className="mt-6 text-lg leading-8 text-gray-100">
               Discover thousands of courses taught by expert instructors. Start
               your learning journey today and unlock your potential with
               world-class education at your fingertips.
