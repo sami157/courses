@@ -306,25 +306,220 @@ export default async function Home() {
       {/* 5. About Platform */}
       <section className="bg-purple-50/30 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
+              About Coachify
+            </h2>
+            <p className="mt-4 text-base leading-8 text-gray-600 dark:text-gray-400 sm:text-lg">
+              Empowering learners worldwide with world-class education
+            </p>
+          </div>
+
+          {/* Main Content */}
+          <div className="mx-auto max-w-4xl mb-16">
             <div className="rounded-3xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-8 sm:p-12 shadow-xl ring-1 ring-black/5 dark:ring-white/10">
-              <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center sm:text-3xl lg:text-4xl">
-                About Our Platform
-              </h2>
-              <p className="mt-6 text-sm leading-8 text-gray-600 dark:text-gray-400 sm:text-base lg:text-lg">
+              <p className="text-base leading-8 text-gray-600 dark:text-gray-400 sm:text-lg lg:text-xl text-center">
                 Coachify is a comprehensive online learning platform designed to
                 connect students with expert instructors from around the world. We
                 believe that quality education should be accessible to everyone,
-                regardless of location or background. Our platform offers
-                thousands of courses across various disciplines, from technology
-                and business to creative arts and personal development.
+                regardless of location or background.
               </p>
-              <p className="mt-4 text-sm leading-8 text-gray-600 dark:text-gray-400 sm:text-base lg:text-lg">
-                With interactive learning materials, hands-on projects, and
-                community support, we empower learners to achieve their goals and
-                advance their careers. Join thousands of students who are already
-                transforming their lives through our platform.
-              </p>
+            </div>
+          </div>
+
+          {/* Statistics */}
+          <div className="mx-auto max-w-5xl mb-16">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 text-center shadow-lg ring-1 ring-black/5 dark:ring-white/10">
+                <div className="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400">
+                  10K+
+                </div>
+                <div className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                  Active Students
+                </div>
+              </div>
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 text-center shadow-lg ring-1 ring-black/5 dark:ring-white/10">
+                <div className="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400">
+                  500+
+                </div>
+                <div className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                  Expert Instructors
+                </div>
+              </div>
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 text-center shadow-lg ring-1 ring-black/5 dark:ring-white/10">
+                <div className="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400">
+                  1K+
+                </div>
+                <div className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                  Courses Available
+                </div>
+              </div>
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 text-center shadow-lg ring-1 ring-black/5 dark:ring-white/10">
+                <div className="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400">
+                  95%
+                </div>
+                <div className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                  Satisfaction Rate
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Features */}
+          <div className="mx-auto max-w-6xl">
+            <h3 className="text-xl font-bold text-center text-gray-900 dark:text-white sm:text-2xl mb-12">
+              Why Choose Coachify?
+            </h3>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg mb-4">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Expert Instructors
+                </h4>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
+                  Learn from industry professionals and experienced educators who
+                  bring real-world expertise to every lesson.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg mb-4">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Interactive Learning
+                </h4>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
+                  Engage with hands-on projects, interactive content, and practical
+                  exercises that reinforce your learning.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg mb-4">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Community Support
+                </h4>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
+                  Join a vibrant community of learners, share experiences, and get
+                  support from peers and instructors.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg mb-4">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Learn at Your Pace
+                </h4>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
+                  Access courses anytime, anywhere. Learn at your own pace with
+                  lifetime access to course materials.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg mb-4">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Certified Courses
+                </h4>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
+                  Earn certificates upon completion that you can showcase on your
+                  resume and LinkedIn profile.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg mb-4">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Career Advancement
+                </h4>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
+                  Gain skills that matter. Our courses are designed to help you
+                  advance your career and achieve your professional goals.
+                </p>
+              </div>
             </div>
           </div>
         </div>
