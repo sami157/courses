@@ -16,7 +16,7 @@ if (!MONGODB_URI) {
 async function seed() {
   try {
     // Connect to MongoDB
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(MONGODB_URI as string);
     console.log("Connected to MongoDB");
 
     // Clear existing data
