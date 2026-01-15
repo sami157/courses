@@ -16,6 +16,7 @@ export default withAuth(
           pathname === "/" ||
           pathname === "/courses" ||
           pathname === "/login" ||
+          pathname === "/signup" ||
           pathname.startsWith("/courses/");
 
         if (isPublicRoute) {
