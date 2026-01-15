@@ -1,6 +1,77 @@
 import Link from "next/link";
 
-export default function Home() {
+interface Teacher {
+  _id: string;
+  name: string;
+  bio?: string;
+  expertise: string[];
+  image?: string;
+  rating: number;
+  totalStudents: number;
+}
+
+interface Course {
+  _id: string;
+  title: string;
+  description?: string;
+  image?: string;
+  price: number;
+  rating: number;
+  teacher: Teacher | string;
+}
+
+async function getTopTeachers(): Promise<Teacher[]> {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000");
+
+  try {
+    const res = await fetch(`${baseUrl}/api/teachers/top`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching top teachers:", error);
+    return [];
+  }
+}
+
+async function getTopCourses(): Promise<Course[]> {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000");
+
+  try {
+    const res = await fetch(`${baseUrl}/api/courses/top`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching top courses:", error);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const [topTeachers, topCourses] = await Promise.all([
+    getTopTeachers(),
+    getTopCourses(),
+  ]);
+
   return (
     <div className="bg-white dark:bg-gray-900">
       {/* 1. Hero Section */}
@@ -98,59 +169,57 @@ export default function Home() {
               Learn from industry experts and experienced educators
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-gray-800">
-              <div className="flex items-center gap-x-4">
-                <div className="h-16 w-16 flex-shrink-0 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600"></div>
-                <div>
-                  <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900 dark:text-white">
-                    Sarah Johnson
-                  </h3>
-                  <p className="text-base leading-7 text-indigo-600 dark:text-indigo-400">
-                    Web Development
-                  </p>
-                </div>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                Expert full-stack developer with 10+ years of experience
-                teaching modern web technologies.
+          {topTeachers.length === 0 ? (
+            <div className="mx-auto mt-16 max-w-2xl text-center">
+              <p className="text-gray-600 dark:text-gray-400">
+                No teachers available yet.
               </p>
             </div>
-            <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-gray-800">
-              <div className="flex items-center gap-x-4">
-                <div className="h-16 w-16 flex-shrink-0 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600"></div>
-                <div>
-                  <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900 dark:text-white">
-                    Michael Chen
-                  </h3>
-                  <p className="text-base leading-7 text-indigo-600 dark:text-indigo-400">
-                    Data Science
-                  </p>
+          ) : (
+            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+              {topTeachers.map((teacher) => (
+                <div
+                  key={teacher._id}
+                  className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-gray-800"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    {teacher.image ? (
+                      <img
+                        src={teacher.image}
+                        alt={teacher.name}
+                        className="h-16 w-16 rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="h-16 w-16 flex-shrink-0 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600"></div>
+                    )}
+                    <div className="mt-4">
+                      <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900 dark:text-white">
+                        {teacher.name}
+                      </h3>
+                      {teacher.expertise && teacher.expertise.length > 0 && (
+                        <p className="mt-1 text-base leading-7 text-indigo-600 dark:text-indigo-400">
+                          {teacher.expertise[0]}
+                        </p>
+                      )}
+                      <div className="mt-2 flex items-center justify-center gap-1">
+                        <span className="text-sm font-medium text-yellow-500">
+                          ⭐
+                        </span>
+                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                          {teacher.rating.toFixed(1)}
+                        </span>
+                      </div>
+                    </div>
+                    {teacher.bio && (
+                      <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-400 line-clamp-3">
+                        {teacher.bio}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                Data scientist and machine learning expert, former Google
-                researcher with published papers.
-              </p>
+              ))}
             </div>
-            <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-gray-800">
-              <div className="flex items-center gap-x-4">
-                <div className="h-16 w-16 flex-shrink-0 rounded-full bg-gradient-to-br from-green-500 to-emerald-600"></div>
-                <div>
-                  <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900 dark:text-white">
-                    Emily Rodriguez
-                  </h3>
-                  <p className="text-base leading-7 text-indigo-600 dark:text-indigo-400">
-                    UI/UX Design
-                  </p>
-                </div>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                Award-winning designer with expertise in user experience and
-                interface design for top tech companies.
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -165,68 +234,65 @@ export default function Home() {
               Featured courses that students love
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-gray-800">
-              <div className="h-48 bg-gradient-to-br from-indigo-500 to-purple-600"></div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold leading-8 tracking-tight text-gray-900 dark:text-white">
-                  Complete Web Development Bootcamp
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                  Master HTML, CSS, JavaScript, React, and Node.js. Build
-                  real-world projects and land your dream job.
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
-                    Sarah Johnson
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    4.9 ⭐
-                  </span>
-                </div>
-              </div>
+          {topCourses.length === 0 ? (
+            <div className="mx-auto mt-16 max-w-2xl text-center">
+              <p className="text-gray-600 dark:text-gray-400">
+                No courses available yet.
+              </p>
             </div>
-            <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-gray-800">
-              <div className="h-48 bg-gradient-to-br from-blue-500 to-cyan-600"></div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold leading-8 tracking-tight text-gray-900 dark:text-white">
-                  Machine Learning Fundamentals
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                  Learn the core concepts of machine learning, neural networks,
-                  and deep learning from scratch.
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
-                    Michael Chen
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    4.8 ⭐
-                  </span>
-                </div>
-              </div>
+          ) : (
+            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+              {topCourses.map((course) => {
+                const teacherName =
+                  typeof course.teacher === "object" && course.teacher
+                    ? course.teacher.name
+                    : "Unknown Teacher";
+                return (
+                  <Link
+                    key={course._id}
+                    href={`/courses/${course._id}`}
+                    className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-900/5 transition-shadow hover:shadow-lg dark:bg-gray-900 dark:ring-gray-800"
+                  >
+                    <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600">
+                      {course.image ? (
+                        <img
+                          src={course.image}
+                          alt={course.title}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : null}
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold leading-8 tracking-tight text-gray-900 group-hover:text-indigo-600 dark:text-white dark:group-hover:text-indigo-400">
+                        {course.title}
+                      </h3>
+                      {course.description && (
+                        <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                          {course.description}
+                        </p>
+                      )}
+                      <div className="mt-4 flex items-center justify-between">
+                        <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
+                          {teacherName}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-yellow-500">
+                            ⭐
+                          </span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">
+                            {course.rating.toFixed(1)}
+                          </span>
+                          <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                            ${course.price}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
-            <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-gray-800">
-              <div className="h-48 bg-gradient-to-br from-green-500 to-emerald-600"></div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold leading-8 tracking-tight text-gray-900 dark:text-white">
-                  Advanced UI/UX Design Masterclass
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                  Create stunning user interfaces and experiences. Learn design
-                  principles, tools, and best practices.
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
-                    Emily Rodriguez
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    4.9 ⭐
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 

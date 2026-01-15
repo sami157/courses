@@ -1,21 +1,50 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+
+interface Teacher {
+  _id: string;
+  name: string;
+}
 
 export default function AddCoursePage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
+  const [isLoadingTeachers, setIsLoadingTeachers] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     image: "",
-    teacher: "",
+    teacherId: "",
     price: "",
     rating: "",
     lessons: "",
+    isTopCourse: false,
   });
+
+  useEffect(() => {
+    // Fetch teachers on component mount
+    const fetchTeachers = async () => {
+      try {
+        const response = await fetch("/api/teachers");
+        if (response.ok) {
+          const data = await response.json();
+          setTeachers(data);
+        } else {
+          toast.error("Failed to load teachers");
+        }
+      } catch (error) {
+        toast.error("Failed to load teachers");
+      } finally {
+        setIsLoadingTeachers(false);
+      }
+    };
+
+    fetchTeachers();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,10 +65,11 @@ export default function AddCoursePage() {
           title: formData.title,
           description: formData.description,
           image: formData.image,
-          teacher: formData.teacher,
+          teacherId: formData.teacherId,
           price: parseFloat(formData.price),
           rating: parseFloat(formData.rating) || 0,
           lessons: lessonsArray,
+          isTopCourse: formData.isTopCourse,
         }),
       });
 
@@ -59,11 +89,20 @@ export default function AddCoursePage() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
+    const target = e.target;
+    const value =
+      target.type === "checkbox"
+        ? (target as HTMLInputElement).checked
+        : target.value;
+    const name = target.name;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -103,12 +142,11 @@ export default function AddCoursePage() {
             htmlFor="description"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
-            Description *
+            Description
           </label>
           <textarea
             id="description"
             name="description"
-            required
             rows={4}
             value={formData.description}
             onChange={handleChange}
@@ -122,13 +160,12 @@ export default function AddCoursePage() {
             htmlFor="image"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
-            Image URL *
+            Image URL
           </label>
           <input
             type="url"
             id="image"
             name="image"
-            required
             value={formData.image}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
@@ -138,21 +175,43 @@ export default function AddCoursePage() {
 
         <div>
           <label
-            htmlFor="teacher"
+            htmlFor="teacherId"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
-            Teacher Name *
+            Teacher *
           </label>
-          <input
-            type="text"
-            id="teacher"
-            name="teacher"
-            required
-            value={formData.teacher}
-            onChange={handleChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
-            placeholder="e.g., Sarah Johnson"
-          />
+          {isLoadingTeachers ? (
+            <div className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:text-sm">
+              Loading teachers...
+            </div>
+          ) : (
+            <select
+              id="teacherId"
+              name="teacherId"
+              required
+              value={formData.teacherId}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+            >
+              <option value="">Select a teacher</option>
+              {teachers.map((teacher) => (
+                <option key={teacher._id} value={teacher._id}>
+                  {teacher.name}
+                </option>
+              ))}
+            </select>
+          )}
+          {teachers.length === 0 && !isLoadingTeachers && (
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              No teachers available.{" "}
+              <a
+                href="/add-teacher"
+                className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400"
+              >
+                Add a teacher first
+              </a>
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -220,10 +279,27 @@ export default function AddCoursePage() {
           </p>
         </div>
 
+        <div className="flex items-center">
+          <input
+            id="isTopCourse"
+            name="isTopCourse"
+            type="checkbox"
+            checked={formData.isTopCourse}
+            onChange={handleChange}
+            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-700"
+          />
+          <label
+            htmlFor="isTopCourse"
+            className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
+          >
+            Mark as Top Course
+          </label>
+        </div>
+
         <div className="flex gap-4">
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || isLoadingTeachers}
             className="rounded-md bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-indigo-500 dark:hover:bg-indigo-400"
           >
             {isLoading ? "Creating..." : "Create Course"}

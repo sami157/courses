@@ -22,8 +22,8 @@ export default withAuth(
           return true;
         }
 
-        // Protect /add-course - require authentication
-        if (pathname === "/add-course") {
+        // Protect /add-course and /add-teacher - require authentication
+        if (pathname === "/add-course" || pathname === "/add-teacher") {
           return !!token;
         }
 

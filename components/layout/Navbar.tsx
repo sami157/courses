@@ -31,12 +31,20 @@ export async function Navbar() {
               Courses
             </Link>
             {session ? (
-              <Link
-                href="/add-course"
-                className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              >
-                Add Course
-              </Link>
+              <>
+                <Link
+                  href="/add-course"
+                  className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                >
+                  Add Course
+                </Link>
+                <Link
+                  href="/add-teacher"
+                  className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                >
+                  Add Teacher
+                </Link>
+              </>
             ) : null}
             <Link
               href="/login"
