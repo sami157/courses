@@ -57,7 +57,8 @@ export default async function CourseDetailPage({
 
   if (!course) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="rounded-lg border border-gray-200 bg-white p-12 text-center dark:border-gray-800 dark:bg-gray-900">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
             Course Not Found
@@ -73,6 +74,7 @@ export default async function CourseDetailPage({
           </Link>
         </div>
       </div>
+      </div>
     );
   }
 
@@ -84,7 +86,8 @@ export default async function CourseDetailPage({
   const teacherName = teacher ? teacher.name : "Unknown Teacher";
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
         {/* Course Image */}
         <div className="relative h-96 w-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 lg:h-full">
@@ -224,6 +227,7 @@ export default async function CourseDetailPage({
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

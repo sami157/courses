@@ -6,7 +6,7 @@ export async function Navbar() {
   const session = await getServerSession(authOptions);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/70 border-b border-white/20 dark:border-gray-700/30 shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-purple-50/70 dark:bg-gray-900/70 border-b border-purple-200/30 dark:border-gray-700/30 shadow-lg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">

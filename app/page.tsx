@@ -73,7 +73,7 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* 1. Hero Section */}
       <section
         className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
@@ -81,32 +81,32 @@ export default async function Home() {
           backgroundImage: "url('/hero.jpg')",
         }}
       >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60"></div>
         <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl drop-shadow-lg">
-              Learn From The Best Teachers Online
-            </h1>
-            <p className="mt-6 text-base leading-8 text-gray-100 sm:text-lg drop-shadow-md">
-              Discover thousands of courses taught by expert instructors. Start
-              your learning journey today and unlock your potential with
-              world-class education at your fingertips.
-            </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-x-6">
-              <Link
-                href="/courses"
-                className="w-full sm:w-auto rounded-xl bg-white/20 backdrop-blur-md px-8 py-4 text-base font-semibold text-white shadow-xl ring-1 ring-white/30 hover:bg-white/30 transition-all hover:scale-105"
-              >
-                Browse Courses
-              </Link>
+          <div className="mx-auto max-w-3xl">
+            <div className="rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-md p-8 sm:p-12 shadow-2xl ring-1 ring-purple-200/50 dark:ring-gray-700/50 text-center">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+                Learn From The Best Teachers Online
+              </h1>
+              <p className="mt-6 text-base leading-8 text-gray-700 dark:text-gray-300 sm:text-lg">
+                Discover thousands of courses taught by expert instructors. Start
+                your learning journey today and unlock your potential with
+                world-class education at your fingertips.
+              </p>
+              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-x-6">
+                <Link
+                  href="/courses"
+                  className="w-full sm:w-auto rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-xl ring-1 ring-indigo-500/50 hover:from-indigo-700 hover:to-purple-700 transition-all hover:scale-105"
+                >
+                  Browse Courses
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 2. How It Works */}
-      <section className="py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -166,7 +166,7 @@ export default async function Home() {
       </section>
 
       {/* 3. Top Teachers */}
-      <section className="py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/30 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -231,7 +231,7 @@ export default async function Home() {
       </section>
 
       {/* 4. Top Courses */}
-      <section className="py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -304,7 +304,7 @@ export default async function Home() {
       </section>
 
       {/* 5. About Platform */}
-      <section className="py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/30 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <div className="rounded-3xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-8 sm:p-12 shadow-xl ring-1 ring-black/5 dark:ring-white/10">
@@ -331,7 +331,7 @@ export default async function Home() {
       </section>
 
       {/* 6. Student Testimonials */}
-      <section className="py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -429,27 +429,27 @@ export default async function Home() {
 
       {/* 7. Call To Action */}
       <section className="relative py-16 sm:py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-100/40 via-indigo-50/20 to-purple-50/40 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <div className="rounded-3xl bg-white/20 backdrop-blur-md p-8 sm:p-12 shadow-2xl ring-1 ring-white/30">
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+            <div className="rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-md p-8 sm:p-12 shadow-xl ring-1 ring-gray-200/50 dark:ring-gray-700/50">
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
                 Ready to Start Learning?
               </h2>
-              <p className="mx-auto mt-6 max-w-xl text-sm leading-8 text-white/90 sm:text-base lg:text-lg">
+              <p className="mx-auto mt-6 max-w-xl text-sm leading-8 text-gray-600 dark:text-gray-300 sm:text-base lg:text-lg">
                 Join thousands of students who are already transforming their
                 careers. Sign up today and get access to all our courses.
               </p>
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-x-6">
                 <Link
                   href="/login"
-                  className="w-full sm:w-auto rounded-xl bg-white/90 backdrop-blur-sm px-8 py-4 text-base font-semibold text-indigo-600 shadow-xl ring-1 ring-white/50 hover:bg-white transition-all hover:scale-105"
+                  className="w-full sm:w-auto rounded-xl bg-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-lg ring-1 ring-indigo-500/50 hover:bg-indigo-700 transition-all hover:scale-105"
                 >
                   Sign Up Now
                 </Link>
                 <Link
                   href="/courses"
-                  className="w-full sm:w-auto text-base font-semibold leading-7 text-white hover:text-white/80 transition-all"
+                  className="w-full sm:w-auto text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-all"
                 >
                   Browse Courses <span aria-hidden="true">→</span>
                 </Link>
