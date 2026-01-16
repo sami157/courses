@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { UserMenu } from "./UserMenu";
+import { NavLink } from "./NavLink";
 
 export async function Navbar() {
   const session = await getServerSession(authOptions);
@@ -19,32 +20,12 @@ export async function Navbar() {
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
-            <Link
-              href="/"
-              className="text-sm font-medium px-3 py-2 rounded-lg text-gray-700 hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-            >
-              Home
-            </Link>
-            <Link
-              href="/courses"
-              className="text-sm font-medium px-3 py-2 rounded-lg text-gray-700 hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-            >
-              Courses
-            </Link>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/courses">Courses</NavLink>
             {session ? (
               <>
-                <Link
-                  href="/add-course"
-                  className="text-sm font-medium px-3 py-2 rounded-lg text-gray-700 hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-                >
-                  Add Course
-                </Link>
-                <Link
-                  href="/add-teacher"
-                  className="text-sm font-medium px-3 py-2 rounded-lg text-gray-700 hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-                >
-                  Add Teacher
-                </Link>
+                <NavLink href="/add-course">Add Course</NavLink>
+                <NavLink href="/add-teacher">Add Teacher</NavLink>
                 <UserMenu
                   name={session.user?.name || null}
                   image={session.user?.image || null}
@@ -52,12 +33,7 @@ export async function Navbar() {
               </>
             ) : (
               <>
-                <Link
-                  href="/signup"
-                  className="text-sm font-medium px-3 py-2 rounded-lg text-gray-700 hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-                >
-                  Sign Up
-                </Link>
+                <NavLink href="/signup">Sign Up</NavLink>
                 <Link
                   href="/login"
                   className="text-sm font-medium px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
@@ -76,12 +52,7 @@ export async function Navbar() {
               />
             ) : (
               <>
-                <Link
-                  href="/signup"
-                  className="text-sm font-medium px-3 py-2 rounded-lg text-gray-700 hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-                >
-                  Sign Up
-                </Link>
+                <NavLink href="/signup">Sign Up</NavLink>
                 <Link
                   href="/login"
                   className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md"

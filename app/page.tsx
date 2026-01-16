@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeroSection } from "@/components/HeroSection";
 
 export const dynamic = "force-dynamic";
 
@@ -75,40 +76,12 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
       {/* 1. Hero Section */}
-      <section
-        className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/hero.jpg')",
-        }}
-      >
-        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-3xl">
-            <div className="rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-md p-8 sm:p-12 shadow-2xl ring-1 ring-purple-200/50 dark:ring-gray-700/50 text-center">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-                Learn From The Best Teachers Online
-              </h1>
-              <p className="mt-6 text-base leading-8 text-gray-700 dark:text-gray-300 sm:text-lg">
-                Discover thousands of courses taught by expert instructors. Start
-                your learning journey today and unlock your potential with
-                world-class education at your fingertips.
-              </p>
-              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-x-6">
-                <Link
-                  href="/courses"
-                  className="w-full sm:w-auto rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-xl ring-1 ring-indigo-500/50 hover:from-indigo-700 hover:to-purple-700 transition-all hover:scale-105"
-                >
-                  Browse Courses
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* 2. How It Works */}
-      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -204,7 +177,7 @@ export default async function Home() {
       </section>
 
       {/* 3. Top Teachers */}
-      <section className="bg-purple-50/30 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/30 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -269,7 +242,7 @@ export default async function Home() {
       </section>
 
       {/* 4. Top Courses */}
-      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -342,7 +315,7 @@ export default async function Home() {
       </section>
 
       {/* 5. About Platform */}
-      <section className="bg-purple-50/30 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/30 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-16">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -564,7 +537,7 @@ export default async function Home() {
       </section>
 
       {/* 6. Student Testimonials */}
-      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32">
+      <section className="bg-purple-50/20 dark:bg-gray-800/30 py-16 sm:py-24 lg:py-32 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
@@ -662,7 +635,7 @@ export default async function Home() {
 
       {/* 7. Call To Action */}
       <section className="relative py-16 sm:py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-100/40 via-indigo-50/20 to-purple-50/40 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-100/40 via-indigo-50/20 to-purple-50/40 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300"></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <div className="rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-md p-8 sm:p-12 shadow-xl ring-1 ring-gray-200/50 dark:ring-gray-700/50">
