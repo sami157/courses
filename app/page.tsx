@@ -123,7 +123,19 @@ export default async function Home() {
               <div className="flex flex-col rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 sm:p-8 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all hover:scale-105">
                 <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white sm:text-lg">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg">
-                    1
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
                   </div>
                   <span className="text-lg sm:text-xl">Choose Course</span>
                 </dt>
@@ -137,7 +149,19 @@ export default async function Home() {
               <div className="flex flex-col rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 sm:p-8 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all hover:scale-105">
                 <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white sm:text-lg">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg">
-                    2
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      />
+                    </svg>
                   </div>
                   <span className="text-lg sm:text-xl">Learn</span>
                 </dt>
@@ -151,7 +175,19 @@ export default async function Home() {
               <div className="flex flex-col rounded-2xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-6 sm:p-8 shadow-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all hover:scale-105">
                 <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white sm:text-lg">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg">
-                    3
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                      />
+                    </svg>
                   </div>
                   <span className="text-lg sm:text-xl">Grow</span>
                 </dt>
