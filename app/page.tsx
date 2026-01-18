@@ -58,15 +58,38 @@ async function getTopCourses(): Promise<Course[]> {
       .limit(3)
       .lean();
     
-    return courses.map((course) => ({
-      _id: course._id.toString(),
-      title: course.title,
-      description: course.description,
-      image: course.image,
-      price: course.price,
-      rating: course.rating,
-      teacher: course.teacher as Teacher | string,
-    }));
+    return courses.map((course) => {
+      // Handle teacher field - could be ObjectId, populated object, or string
+      let teacher: Teacher | string;
+      if (typeof course.teacher === "object" && course.teacher !== null && "_id" in course.teacher) {
+        // It's a populated teacher object
+        const teacherObj = course.teacher as any;
+        teacher = {
+          _id: teacherObj._id.toString(),
+          name: teacherObj.name,
+          bio: teacherObj.bio,
+          expertise: teacherObj.expertise || [],
+          image: teacherObj.image,
+          rating: teacherObj.rating || 0,
+          totalStudents: teacherObj.totalStudents || 0,
+        };
+      } else {
+        // It's an ObjectId or string, convert to string
+        teacher = typeof course.teacher === "string" 
+          ? course.teacher 
+          : (course.teacher as any)?.toString() || "";
+      }
+
+      return {
+        _id: course._id.toString(),
+        title: course.title,
+        description: course.description,
+        image: course.image,
+        price: course.price,
+        rating: course.rating,
+        teacher,
+      };
+    });
   } catch (error) {
     console.error("Error fetching top courses:", error);
     return [];
