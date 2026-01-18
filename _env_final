@@ -1,0 +1,6 @@
+PORT=5000
+MONGODB_URI=mongodb+srv://sami:69152910@cluster0.aendd7j.mongodb.net/?appName=Cluster0
+NEXTAUTH_SECRET=bIE7uA4u+3K1MBPOh1nBXmtFRigbZCiIBM0G0jf++pQ=
+NEXTAUTH_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=233177921774-iqesg10t3mop3iddbffcrsp9vhcic2ab.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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

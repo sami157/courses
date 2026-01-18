@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { HeroSection } from "@/components/HeroSection";
+import connectDB from "@/lib/mongodb";
+import Teacher from "@/lib/models/Teacher";
+import Course from "@/lib/models/Course";
 
 export const dynamic = "force-dynamic";
 
@@ -24,22 +27,22 @@ interface Course {
 }
 
 async function getTopTeachers(): Promise<Teacher[]> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    (process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000");
-
   try {
-    const res = await fetch(`${baseUrl}/api/teachers/top`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      return [];
-    }
-
-    return res.json();
+    await connectDB();
+    const teachers = await Teacher.find()
+      .sort({ rating: -1 })
+      .limit(4)
+      .lean();
+    
+    return teachers.map((teacher) => ({
+      _id: teacher._id.toString(),
+      name: teacher.name,
+      bio: teacher.bio,
+      expertise: teacher.expertise,
+      image: teacher.image,
+      rating: teacher.rating,
+      totalStudents: teacher.totalStudents,
+    }));
   } catch (error) {
     console.error("Error fetching top teachers:", error);
     return [];
@@ -47,22 +50,23 @@ async function getTopTeachers(): Promise<Teacher[]> {
 }
 
 async function getTopCourses(): Promise<Course[]> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    (process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000");
-
   try {
-    const res = await fetch(`${baseUrl}/api/courses/top`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      return [];
-    }
-
-    return res.json();
+    await connectDB();
+    const courses = await Course.find({ isTopCourse: true })
+      .populate("teacher", "name bio expertise image rating totalStudents")
+      .sort({ rating: -1 })
+      .limit(3)
+      .lean();
+    
+    return courses.map((course) => ({
+      _id: course._id.toString(),
+      title: course.title,
+      description: course.description,
+      image: course.image,
+      price: course.price,
+      rating: course.rating,
+      teacher: course.teacher as Teacher | string,
+    }));
   } catch (error) {
     console.error("Error fetching top courses:", error);
     return [];

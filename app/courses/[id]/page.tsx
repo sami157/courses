@@ -1,4 +1,6 @@
 import Link from "next/link";
+import connectDB from "@/lib/mongodb";
+import Course from "@/lib/models/Course";
 
 export const dynamic = "force-dynamic";
 
@@ -24,25 +26,26 @@ interface Course {
 }
 
 async function getCourse(id: string): Promise<Course | null> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    (process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000");
-
   try {
-    const res = await fetch(`${baseUrl}/api/courses/${id}`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      if (res.status === 404) {
-        return null;
-      }
-      throw new Error("Failed to fetch course");
+    await connectDB();
+    const course = await Course.findById(id)
+      .populate("teacher", "name bio expertise image rating totalStudents")
+      .lean();
+    
+    if (!course) {
+      return null;
     }
 
-    return res.json();
+    return {
+      _id: course._id.toString(),
+      title: course.title,
+      description: course.description,
+      image: course.image,
+      price: course.price,
+      rating: course.rating,
+      teacher: course.teacher as Teacher | string,
+      lessons: course.lessons || [],
+    };
   } catch (error) {
     console.error("Error fetching course:", error);
     return null;
